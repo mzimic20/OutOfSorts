@@ -12,17 +12,28 @@ public class Tester {
     }
     int[] comp = a;
 //    System.out.println("inital array: " + Arrays.toString(a) );
-
     Sorts.bubbleSort(a);
-
 //    System.out.println( Arrays.toString(a) );
-
     Arrays.sort(comp);
-
     boolean failure = false;
     int instance = 0;
     for(int i = 0; i < comp.length; i++) {
       if (a[i] != comp[i]) {
+        failure = true;
+        instance = i;
+      }
+    }
+    if (failure) System.out.println("Error! Elements at index " + instance + "unequal.");
+    else System.out.println("Success!");
+
+    int[] b = new int[0];
+    comp = b;
+    Sorts.bubbleSort(b);
+    Arrays.sort(comp);
+    failure = false;
+    instance = 0;
+    for(int i = 0; i < comp.length; i++) {
+      if (b[i] != comp[i]) {
         failure = true;
         instance = i;
       }
