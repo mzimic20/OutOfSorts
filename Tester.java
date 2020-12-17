@@ -22,6 +22,11 @@ public class Tester {
       if ( Arrays.equals(randData, compare) ) System.out.println("selectionSort success");
       else System.out.println("selectionSort failed");
     }
+    if (args[1].equals("insertion")) {
+      Sorts.insertionSort(randData);
+      if ( Arrays.equals(randData, compare) ) System.out.println("insertionSort success");
+      else System.out.println("insertionSort failed");
+    }
   }
 
 }
