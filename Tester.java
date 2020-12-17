@@ -3,43 +3,25 @@ import java.util.Arrays;
 
 public class Tester {
 
-  public static void main(String[]args) {
-    int[] a = new int[10000];
-    int seed = Integer.parseInt( args[0] );
-    Random rng = new Random(seed);
-    for(int i = 0; i < 10000; i++) {
-      a[i] = rng.nextInt() % 1000;
+  public static void main(String[]args){
+    //args 0 must be size of the Array
+    //args 1 must be "bubble", "selection", or "insertion"
+    int[] randData = new int[Integer.parseInt(args[0])];
+    for(int i = 0; i < randData.length; i++) {
+      randData[i] = (int)(Math.random() * 10000);
     }
-    int[] comp = a;
-//    System.out.println("inital array: " + Arrays.toString(a) );
-    Sorts.bubbleSort(a);
-//    System.out.println( Arrays.toString(a) );
-    Arrays.sort(comp);
-    boolean failure = false;
-    int instance = 0;
-    for(int i = 0; i < comp.length; i++) {
-      if (a[i] != comp[i]) {
-        failure = true;
-        instance = i;
-      }
+    int[] compare = Arrays.copyOf(randData, randData.length);
+    Arrays.sort(compare);
+    if (args[1].equals("bubble")) {
+      Sorts.bubbleSort(randData);
+      if ( Arrays.equals(randData, compare) ) System.out.println("bubbleSort success");
+      else System.out.println("bubbleSort failed");
     }
-    if (failure) System.out.println("Error! Elements at index " + instance + "unequal.");
-    else System.out.println("Success!");
-
-    int[] b = new int[0];
-    comp = b;
-    Sorts.bubbleSort(b);
-    Arrays.sort(comp);
-    failure = false;
-    instance = 0;
-    for(int i = 0; i < comp.length; i++) {
-      if (b[i] != comp[i]) {
-        failure = true;
-        instance = i;
-      }
+    if (args[1].equals("selection")) {
+      Sorts.selectionSort(randData);
+      if ( Arrays.equals(randData, compare) ) System.out.println("selectionSort success");
+      else System.out.println("selectionSort failed");
     }
-    if (failure) System.out.println("Error! Elements at index " + instance + "unequal.");
-    else System.out.println("Success!");
   }
 
 }
